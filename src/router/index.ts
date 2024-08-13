@@ -12,6 +12,7 @@ import ProfileView from '@/views/ProfileView.vue'
 import TablesView from '@/views/TablesView.vue'
 import AlertsView from '@/views/UiElements/AlertsView.vue'
 import ButtonsView from '@/views/UiElements/ButtonsView.vue'
+import Empresas from '@/views/Empresas/index.vue'
 
 const routes = [
   {
@@ -108,6 +109,14 @@ const routes = [
     component: SignupView,
     meta: {
       title: 'Signup'
+    }
+  },
+  {
+    path: '/empresas',
+    name: 'empresas',
+    component: Empresas,
+    meta: {
+      title: 'Empresas'
     }
   }
 ]
