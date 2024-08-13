@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
-import EmpresasTable from './EmpresasTable.vue';
+import EmpresasTable from '@/components/Tables/EmpresasTable.vue';
 </script>
 
 <template>
