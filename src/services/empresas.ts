@@ -7,5 +7,12 @@ export default (httpClient: Axios) => ({
         return {
             data: response.data
         }
+    },
+    deleteById: async (id: string) => {
+        const response = await httpClient.delete(`/company/${id}`);
+
+        return {
+            data: response.data
+        }
     }
 });

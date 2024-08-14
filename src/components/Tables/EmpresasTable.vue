@@ -3,16 +3,16 @@ import { ref, onMounted } from 'vue';
 import services from '@/services';
 
 
-const packages = ref([
-  { name: 'Free Package', price: '$0.00', invoiceDate: 'Jan 13, 2025', status: 'Paid' },
-  { name: 'Standard Package', price: '$59.00', invoiceDate: 'Jan 13, 2025', status: 'Paid' },
-  { name: 'Business Package', price: '$99.00', invoiceDate: 'Jan 13, 2025', status: 'Unpaid' },
-  { name: 'Standard Package', price: '$59.00', invoiceDate: 'Jan 13, 2025', status: 'Pending' }
-])
+// const packages = ref([
+//   { name: 'Free Package', price: '$0.00', invoiceDate: 'Jan 13, 2025', status: 'Paid' },
+//   { name: 'Standard Package', price: '$59.00', invoiceDate: 'Jan 13, 2025', status: 'Paid' },
+//   { name: 'Business Package', price: '$99.00', invoiceDate: 'Jan 13, 2025', status: 'Unpaid' },
+//   { name: 'Standard Package', price: '$59.00', invoiceDate: 'Jan 13, 2025', status: 'Pending' }
+// ])
 
 const companies = ref([]);
 
-onMounted(async () => {
+const fetchCompanies = async () => {
   try {
     const { data } = await services.empresas.getAll();
 
@@ -23,7 +23,20 @@ onMounted(async () => {
   } catch (e) {
     console.error(e);
   }
-});
+}
+
+onMounted(fetchCompanies);
+
+const handleDelete = async (id: string) => {
+  try {
+    const { data } = await services.empresas.deleteById(id);
+
+    console.log(data);
+    fetchCompanies();
+  } catch (e) {
+    console.error(e);
+  }
+}
 </script>
 
 <template>
@@ -79,7 +92,7 @@ onMounted(async () => {
                   </svg>
                 </button>
 
-                <button class="hover:text-primary">
+                <button @click="handleDelete(company.id)" class="hover:text-primary">
                   <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
