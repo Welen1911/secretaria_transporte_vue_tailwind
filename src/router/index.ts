@@ -96,7 +96,7 @@ const routes = [
     }
   },
   {
-    path: '/auth/signin',
+    path: '/sign-in',
     name: 'signin',
     component: SigninView,
     meta: {

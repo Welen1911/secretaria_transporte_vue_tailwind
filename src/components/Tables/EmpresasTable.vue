@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
 import services from '@/services';
 
 
@@ -10,29 +9,21 @@ import services from '@/services';
 //   { name: 'Standard Package', price: '$59.00', invoiceDate: 'Jan 13, 2025', status: 'Pending' }
 // ])
 
-const companies = ref([]);
-
-const fetchCompanies = async () => {
-  try {
-    const { data } = await services.empresas.getAll();
-
-    companies.value = data.companies;
-
-    console.log(companies);
-
-  } catch (e) {
-    console.error(e);
+defineProps({
+  companies: {
+    type: Array,
+    required: true
   }
-}
+});
 
-onMounted(fetchCompanies);
+const emits = defineEmits(['changeCompany']);
 
 const handleDelete = async (id: string) => {
   try {
     const { data } = await services.empresas.deleteById(id);
 
     console.log(data);
-    fetchCompanies();
+    emits('changeCompany');
   } catch (e) {
     console.error(e);
   }
