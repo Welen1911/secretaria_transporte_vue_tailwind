@@ -12,6 +12,8 @@ import ProfileView from '@/views/ProfileView.vue'
 import TablesView from '@/views/TablesView.vue'
 import AlertsView from '@/views/UiElements/AlertsView.vue'
 import ButtonsView from '@/views/UiElements/ButtonsView.vue'
+import Empresas from '@/views/Empresas/index.vue'
+import Empresa from '@/views/Empresas/Empresa.vue'
 
 const routes = [
   {
@@ -95,7 +97,7 @@ const routes = [
     }
   },
   {
-    path: '/auth/signin',
+    path: '/sign-in',
     name: 'signin',
     component: SigninView,
     meta: {
@@ -109,7 +111,24 @@ const routes = [
     meta: {
       title: 'Signup'
     }
+  },
+  {
+    path: '/empresas',
+    name: 'empresas',
+    component: Empresas,
+    meta: {
+      title: 'Empresas'
+    }
+  },
+  {
+    path: '/empresas/:id',
+    name: 'empresaById',
+    component: Empresa,
+    meta: {
+      title: 'Empresa X'
+    }
   }
+
 ]
 
 const router = createRouter({

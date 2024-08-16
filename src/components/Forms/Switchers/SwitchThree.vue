@@ -1,7 +1,24 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const switcherToggle = ref<boolean>(false)
+const props = defineProps({
+  model: {
+    type: Boolean,
+    required: true
+  }
+});
+
+const emit = defineEmits(['changeEnabled']);
+
+const switcherToggle = ref<boolean>(props.model);
+
+const handleChange = () => {
+  switcherToggle.value = !switcherToggle.value;
+
+  
+  emit('changeEnabled', switcherToggle.value ? "Sim" : "Não");
+}
+
 </script>
 
 <template>
@@ -12,7 +29,8 @@ const switcherToggle = ref<boolean>(false)
           type="checkbox"
           id="toggle3"
           class="sr-only"
-          @change="switcherToggle = !switcherToggle"
+          @change="handleChange"
+          v-model="props.model"
         />
         <div class="block h-8 w-14 rounded-full bg-meta-9 dark:bg-[#5A616B]"></div>
         <div
