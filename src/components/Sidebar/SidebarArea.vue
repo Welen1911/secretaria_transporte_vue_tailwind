@@ -362,7 +362,7 @@ const menuGroups = ref([
         label: 'Authentication',
         route: '#',
         children: [
-          { label: 'Sign In', route: '/auth/signin' },
+          { label: 'Sign In', route: '/sign-in' },
           { label: 'Sign Up', route: '/auth/signup' }
         ]
       }
