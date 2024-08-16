@@ -50,8 +50,10 @@ const handleDelete = async (id: string) => {
         <tbody>
           <tr v-for="company in companies" :key="company.id">
             <td class="py-5 px-4 pl-9 xl:pl-11">
-              <h5 class="font-medium text-black dark:text-white" @click="() => console.log('Cricou!')">{{ company.name
-                }}</h5>
+              <a :href="`/empresas/${company.id}`">
+                <h5 class="font-medium text-black dark:text-white">{{ company.name
+                  }}</h5>
+              </a>
               <p class="text-sm">{{ company.name }}</p>
             </td>
             <td class="py-5 px-4">

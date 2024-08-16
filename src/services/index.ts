@@ -4,7 +4,7 @@ import empresas from "./empresas";
 const API_ENVS = {
 //   production: "https://feed-backer-backend.vercel.app/api/api",
   development: "",
-  local: "http://localhost:8000/api",
+  local: "http://127.0.0.1:8000/api",
 };
 
 const httpClient = axios.create({

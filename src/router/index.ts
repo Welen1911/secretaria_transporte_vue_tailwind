@@ -13,6 +13,7 @@ import TablesView from '@/views/TablesView.vue'
 import AlertsView from '@/views/UiElements/AlertsView.vue'
 import ButtonsView from '@/views/UiElements/ButtonsView.vue'
 import Empresas from '@/views/Empresas/index.vue'
+import Empresa from '@/views/Empresas/Empresa.vue'
 
 const routes = [
   {
@@ -118,7 +119,16 @@ const routes = [
     meta: {
       title: 'Empresas'
     }
+  },
+  {
+    path: '/empresas/:id',
+    name: 'empresaById',
+    component: Empresa,
+    meta: {
+      title: 'Empresa X'
+    }
   }
+
 ]
 
 const router = createRouter({

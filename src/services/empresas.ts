@@ -8,10 +8,24 @@ export default (httpClient: Axios) => ({
             data: response.data
         }
     },
+    getById: async (id: string| string[]) => {
+        const response = await httpClient.get(`/company/${id}`);
+
+        return {
+            data: response.data
+        }
+    },
     create: async (data: Object) => {
         const response = await httpClient.post('/company', data);
 
         console.log(response);
+
+        return {
+            data: response.data
+        }
+    },
+    updateById: async (id: string, data: Object) => {
+        const response = await httpClient.put(`/company/${id}`, data);
 
         return {
             data: response.data
