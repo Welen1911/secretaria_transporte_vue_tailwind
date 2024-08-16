@@ -1,5 +1,6 @@
 import axios from "axios";
 import empresas from "./empresas";
+import auth from "./auth";
 
 const API_ENVS = {
 //   production: "https://feed-backer-backend.vercel.app/api/api",
@@ -32,5 +33,6 @@ httpClient.interceptors.response.use(
 );
 
 export default {
-    empresas: empresas(httpClient)
+    empresas: empresas(httpClient),
+    auth: auth(httpClient)
 };
