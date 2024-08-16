@@ -3,7 +3,7 @@ import DefaultCard from '@/components/Forms/DefaultCard.vue';
 import SwitchThree from '@/components/Forms/Switchers/SwitchThree.vue';
 import ButtonDefault from '@/components/Buttons/ButtonDefault.vue';
 import services from '@/services';
-import { reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
 
 const emits = defineEmits(['companyCreated']);
 
@@ -17,6 +17,8 @@ const props = defineProps({
         required: true
     }
 });
+
+onMounted(() => console.log(props.company));
 
 const changeEnabled = (val: string) => {
     props.company.is_enabled = val;

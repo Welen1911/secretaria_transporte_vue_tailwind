@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
+import { onBeforeMount, reactive } from 'vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import services from '@/services';
 import { useRouter } from 'vue-router';
@@ -9,25 +9,30 @@ const router = useRouter();
 
 
 
-const company = reactive({
-    name: '',
-    cnpj: '',
-    is_enabled: '',
+const state = reactive({
+    company: {
+        name: '',
+        cnpj: '',
+        is_enabled: '',
+    },
+    companyId: ''
 });
 
-const companyId = ref('');
 
 const fetchCompany = async () => {
     try {
-        const id = router.currentRoute.value.params.id;
+        const id = await router.currentRoute.value.params.id;
 
         const { data } = await services.empresas.getById(id);
-
-        // console.log(data);
-        companyId.value = data.company.id;
-        company.name = data.company.name;
-        company.cnpj = data.company.cnpj;
-        company.is_enabled = data.company.is_enabled;
+        
+        const company = data.data.company;
+        
+        console.log(data.data);
+        
+        state.companyId = company.id;
+        state.company.name = company.name;
+        state.company.cnpj = company.cnpj;
+        state.company.is_enabled = company.is_enabled;
 
         // console.log(company);
 
@@ -36,7 +41,7 @@ const fetchCompany = async () => {
     }
 }
 
-onMounted(fetchCompany);
+onBeforeMount(fetchCompany);
 
 
 </script>
@@ -44,7 +49,7 @@ onMounted(fetchCompany);
 <template>
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4 md:grid-cols-1 md:gap-1 xl:grid-cols-1 2xl:gap-7.5">
-            <EditCompany @company-created="fetchCompany" :company="company" :id="companyId"/>
+            <EditCompany @company-created="fetchCompany" :company="state.company" :id="state.companyId" />
         </div>
         <div class="mt-4 grid grid-cols-1 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
             <!-- ====== Table One Start -->
