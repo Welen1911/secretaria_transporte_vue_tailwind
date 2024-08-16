@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import DefaultAuthCard from '@/components/Auths/DefaultAuthCard.vue'
-import InputGroup from '@/components/Auths/InputGroup.vue'
-import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'
-import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import { useRoute, useRouter } from 'vue-router';
 import { onMounted, reactive } from 'vue';
-
-import { ref } from 'vue'
 
 const route = useRoute();
 const router = useRouter();
@@ -14,8 +9,6 @@ const router = useRouter();
 const state = reactive({
   hasError: false
 });
-
-const pageTitle = ref('Sign In');
 
 onMounted(async () => {
   const token = await getUrlQueryParams();
