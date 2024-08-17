@@ -95,7 +95,7 @@ const menuGroups = ref([
                   />
                 </svg>`,
         label: 'Automoveis',
-        route: '/',
+        route: '/automoveis',
         // children: [{ label: 'eCommerce', route: '/' }]
       }, {
         icon: `<svg
