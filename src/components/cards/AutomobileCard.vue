@@ -27,14 +27,14 @@ const submit = () => emits('onClick:submit');
                     <InputGroup label="Ano" type="number" placeholder="2002" v-model="automobile.year"
                         customClasses="w-full xl:w-1/2" required />
 
-                    <InputGroup label="Placa" type="text" placeholder="GAY2A24"
+                    <InputGroup label="Placa" type="text" placeholder="sbk2a20"
                         customClasses="w-full xl:w-1/2" v-model="automobile.plate" required />
                 </div>
 
-                <InputGroup label="Modelo" type="text" placeholder="VW Pole" customClasses="mb-4.5"
+                <InputGroup label="Modelo" type="text" placeholder="VW Golf" customClasses="mb-4.5"
                 v-model="automobile.model"  required />
 
-                <InputGroup label="Capacidade de passageiros" type="number" placeholder="4 viados" customClasses="mb-4.5" 
+                <InputGroup label="Capacidade de passageiros" type="number" placeholder="4" customClasses="mb-4.5" 
                 v-model="automobile.capacity" required />
                 <button
                     class="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
