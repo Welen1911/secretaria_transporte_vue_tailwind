@@ -8,6 +8,10 @@ const props = defineProps({
   }
 });
 
+const emits = defineEmits(['onClick:delete']);
+
+const handleDelete = (id: String) => emits('onClick:delete', id);
+
 </script>
 
 <template>
@@ -60,7 +64,7 @@ const props = defineProps({
                   </svg>
                 </button>
 
-                <button class="hover:text-primary">
+                <button class="hover:text-primary" @click="handleDelete(item.id)">
                   <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path

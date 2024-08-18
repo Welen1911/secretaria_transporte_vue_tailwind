@@ -38,6 +38,19 @@ const clearInputs = () => {
     }
 }
 
+const handleDelete = async (id: String) => {
+    try {
+        const { data } = await services.automoveis.deleteById(id);
+
+        console.log(data);
+
+        fetchAutomobiles();
+
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 const fetchAutomobiles = async () => {
     try {
         const { data } = await services.automoveis.getAll();
@@ -63,7 +76,7 @@ onBeforeMount(fetchAutomobiles);
         </div>
 
         <div class="grid grid-cols-1 gap-4 mt-8">
-            <AutomoveisTable :data="state.automobiles"/>
+            <AutomoveisTable :data="state.automobiles" @on-click:delete="handleDelete" />
         </div>
     </DefaultLayout>
 </template>
