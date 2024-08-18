@@ -1,6 +1,7 @@
 import axios from "axios";
 import empresas from "./empresas";
 import auth from "./auth";
+import automoveis from "./automoveis";
 
 const API_ENVS = {
 //   production: "https://feed-backer-backend.vercel.app/api/api",
@@ -34,5 +35,6 @@ httpClient.interceptors.response.use(
 
 export default {
     empresas: empresas(httpClient),
-    auth: auth(httpClient)
+    auth: auth(httpClient),
+    automoveis: automoveis(httpClient)
 };
