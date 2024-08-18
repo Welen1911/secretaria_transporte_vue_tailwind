@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
+import {useRouter} from 'vue-router';
 
 const props = defineProps({
   data: {
@@ -9,6 +10,10 @@ const props = defineProps({
 });
 
 const emits = defineEmits(['onClick:delete']);
+
+const router = useRouter();
+
+const showAutomovel = (id: String) => router.push(`/automoveis/${id}`);
 
 const handleDelete = (id: String) => emits('onClick:delete', id);
 
@@ -34,7 +39,7 @@ const handleDelete = (id: String) => emits('onClick:delete', id);
         </thead>
         <tbody>
           <tr v-for="item in data" :key="item.id">
-            <td class="py-5 px-4 pl-9 xl:pl-11">
+            <td class="py-5 px-4 pl-9 xl:pl-11" @click="showAutomovel(item.id)">
               <h5 class="font-medium text-black dark:text-white">{{ item.model }}</h5>
             </td>
             <td class="py-5 px-4">
@@ -52,7 +57,7 @@ const handleDelete = (id: String) => emits('onClick:delete', id);
             </td>
             <td class="py-5 px-4">
               <div class="flex items-center space-x-3.5">
-                <button class="hover:text-primary">
+                <button class="hover:text-primary" @click="showAutomovel(item.id)">
                   <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
