@@ -14,6 +14,8 @@ import AlertsView from '@/views/UiElements/AlertsView.vue'
 import ButtonsView from '@/views/UiElements/ButtonsView.vue'
 import Empresas from '@/views/Empresas/index.vue'
 import Empresa from '@/views/Empresas/Empresa.vue'
+import Automoveis from '@/views/Automoveis/index.vue'
+import Automovel from '@/views/Automoveis/Automovel.vue'
 
 const routes = [
   {
@@ -126,6 +128,22 @@ const routes = [
     component: Empresa,
     meta: {
       title: 'Empresa X'
+    }
+  }, 
+  {
+    path: '/automoveis',
+    name: 'automoveis',
+    component: Automoveis,
+    meta: {
+      title: 'Automoveis'
+    }
+  },
+  {
+    path: '/automoveis/:id',
+    name: 'automoveiById',
+    component: Automovel,
+    meta: {
+      title: 'Automoveis'
     }
   }
 
