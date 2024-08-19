@@ -16,6 +16,7 @@ import Empresas from '@/views/Empresas/index.vue'
 import Empresa from '@/views/Empresas/Empresa.vue'
 import Automoveis from '@/views/Automoveis/index.vue'
 import Automovel from '@/views/Automoveis/Automovel.vue'
+import Motoristas from '@/views/Motoristas/index.vue'
 
 const routes = [
   {
@@ -129,7 +130,7 @@ const routes = [
     meta: {
       title: 'Empresa X'
     }
-  }, 
+  },
   {
     path: '/automoveis',
     name: 'automoveis',
@@ -145,8 +146,15 @@ const routes = [
     meta: {
       title: 'Automoveis'
     }
+  },
+  {
+    path: '/motoristas',
+    name: 'motoristas',
+    component: Motoristas,
+    meta: {
+      title: 'Motoristas'
+    }
   }
-
 ]
 
 const router = createRouter({

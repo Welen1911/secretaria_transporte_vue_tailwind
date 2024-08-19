@@ -67,7 +67,7 @@ const menuGroups = ref([
         route: '#',
         children: [
           { label: 'Administrativos', route: '/' },
-          { label: 'Motoristas', route: '/' }]
+          { label: 'Motoristas', route: '/motoristas' }]
       }, {
         icon: `<svg
                   class="fill-current"
