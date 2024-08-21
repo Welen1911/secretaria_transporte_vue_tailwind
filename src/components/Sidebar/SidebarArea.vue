@@ -141,8 +141,8 @@ const menuGroups = ref([
                     fill=""
                   />
                 </svg>`,
-        label: 'Calendar',
-        route: '/calendar'
+        label: 'Turnos',
+        route: '/turnos'
       },
       {
         icon: `<svg
