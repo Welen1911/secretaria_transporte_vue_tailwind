@@ -20,6 +20,7 @@ import Motoristas from '@/views/Motoristas/index.vue'
 import Motorista from '@/views/Motoristas/Motorista.vue'
 import Turnos from '@/views/Turnos/index.vue'
 import Turno from '@/views/Turnos/Turno.vue'
+import Viagens from '@/views/Viagens/index.vue'
 
 const routes = [
   {
@@ -170,6 +171,14 @@ const routes = [
     path: '/motoristas/:id',
     name: 'motoristaById',
     component: Motorista,
+    meta: {
+      title: 'Motoristas'
+    }
+  },
+  {
+    path: '/viagens',
+    name: 'Viagens',
+    component: Viagens,
     meta: {
       title: 'Motoristas'
     }
