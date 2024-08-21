@@ -18,6 +18,8 @@ import Automoveis from '@/views/Automoveis/index.vue'
 import Automovel from '@/views/Automoveis/Automovel.vue'
 import Motoristas from '@/views/Motoristas/index.vue'
 import Motorista from '@/views/Motoristas/Motorista.vue'
+import Turnos from '@/views/Turnos/index.vue'
+import Turno from '@/views/Turnos/Turno.vue'
 
 const routes = [
   {
@@ -29,11 +31,19 @@ const routes = [
     }
   },
   {
-    path: '/calendar',
-    name: 'calendar',
-    component: CalendarView,
+    path: '/turnos',
+    name: 'turnos',
+    component: Turnos,
     meta: {
-      title: 'Calendar'
+      title: 'Turnos'
+    }
+  },
+  {
+    path: '/turnos/:id',
+    name: 'turno',
+    component: Turno,
+    meta: {
+      title: 'Turnos'
     }
   },
   {

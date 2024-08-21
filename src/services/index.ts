@@ -3,6 +3,7 @@ import empresas from "./empresas";
 import auth from "./auth";
 import automoveis from "./automoveis";
 import motoristas from "./motoristas";
+import turnos from "./turnos";
 
 const API_ENVS = {
 //   production: "https://feed-backer-backend.vercel.app/api/api",
@@ -38,5 +39,6 @@ export default {
     empresas: empresas(httpClient),
     auth: auth(httpClient),
     automoveis: automoveis(httpClient),
-    motoristas: motoristas(httpClient)
+    motoristas: motoristas(httpClient),
+    turnos: turnos(httpClient)
 };
