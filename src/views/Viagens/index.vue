@@ -1,22 +1,25 @@
 <script setup lang="ts">
-import TurnsCard from '@/components/cards/TurnsCard.vue';
+import TravelCard from '@/components/cards/TravelCard.vue';
 import TurnosTable from '@/components/Tables/TurnosTable.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import services from '@/services';
 import { onBeforeMount, reactive } from 'vue';
 
-const state = reactive({
-    turn: {
-        period: '',
-        start_begin: '',
-        start_return: ''
+const state = reactive({ 
+    turns: [],
+    travel: {
+        passengersNumber: null,
+        turn_id: null,
+        driver_id: null,
+        automobile_id: null
     },
-    turns: []
+    automobiles: [],
+    drivers: []
 });
 
 const handleSubmit = async () => {
     try {
-        const { data } = await services.turnos.create(state.turn);
+        const { data } = await services.viagens.create(state.travel);
 
         clearInputs();
 
@@ -62,18 +65,50 @@ const fetchTurns = async () => {
     }
 }
 
+const fetchSecoundPart = async () => {
+    fetchAutomobiles();
+    fetchDrivers();
+}
+
+const fetchAutomobiles = async () => {
+    try {
+        const { data } = await services.automoveis.getAll();
+
+        state.automobiles = data.data.auto_mobiles;
+
+        console.log(state.automobiles);
+
+
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+const fetchDrivers = async () => {
+    try {
+        const { data } = await services.motoristas.getAll();
+
+        state.drivers = data.data.drivers;
+
+        console.log(state.drivers);
+
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 onBeforeMount(fetchTurns);
 </script>
 
 <template>
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4">
-            <TurnsCard :turn="state.turn" title="Criar turno"
-                @on-click:submit="handleSubmit" />
+            <TravelCard :turns="state.turns" :travel="state.travel" :automobiles="state.automobiles" :drivers="state.drivers" title="Cadastrar viagem"
+                @on-click:submit="handleSubmit" @on-click:continue="fetchSecoundPart" />
         </div>
 
-        <div class="grid grid-cols-1 gap-4 mt-8">
+        <!-- <div class="grid grid-cols-1 gap-4 mt-8">
             <TurnosTable :data="state.turns" @on-click:delete="handleDelete" />
-        </div>
+        </div> -->
     </DefaultLayout>
 </template>
