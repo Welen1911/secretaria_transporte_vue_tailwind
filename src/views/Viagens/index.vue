@@ -72,7 +72,7 @@ const fetchSecoundPart = async () => {
 
 const fetchAutomobiles = async () => {
     try {
-        const { data } = await services.automoveis.getAll();
+        const { data } = await services.automoveis.getByTurnCapacity(state.travel.turn_id, state.travel.passengersNumber);
 
         state.automobiles = data.data.auto_mobiles;
 
@@ -86,7 +86,7 @@ const fetchAutomobiles = async () => {
 
 const fetchDrivers = async () => {
     try {
-        const { data } = await services.motoristas.getAll();
+        const { data } = await services.motoristas.getByTurnCategoryCNH(state.travel.turn_id, state.travel.passengersNumber);
 
         state.drivers = data.data.drivers;
 
