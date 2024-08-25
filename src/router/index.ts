@@ -21,6 +21,7 @@ import Motorista from '@/views/Motoristas/Motorista.vue'
 import Turnos from '@/views/Turnos/index.vue'
 import Turno from '@/views/Turnos/Turno.vue'
 import Viagens from '@/views/Viagens/index.vue'
+import Viagem from '@/views/Viagens/Viagem.vue'
 
 const routes = [
   {
@@ -180,7 +181,15 @@ const routes = [
     name: 'Viagens',
     component: Viagens,
     meta: {
-      title: 'Motoristas'
+      title: 'Viagens'
+    }
+  },
+  {
+    path: '/viagens/:id',
+    name: 'Viagen',
+    component: Viagem,
+    meta: {
+      title: 'Viagem'
     }
   }
 ]

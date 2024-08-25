@@ -4,6 +4,9 @@ import ViagemTable from '@/components/Tables/ViagemTable.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import services from '@/services';
 import { onBeforeMount, reactive } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const state = reactive({
     turns: [],
@@ -11,7 +14,8 @@ const state = reactive({
         passengersNumber: null,
         turn_id: null,
         driver_id: null,
-        automobile_id: null
+        automobile_id: null,
+        turn_id: null
     },
     automobiles: [],
     drivers: [],
@@ -24,7 +28,7 @@ const handleSubmit = async () => {
 
         clearInputs();
 
-        fetchTravels();
+        // fetchTravels();
 
         console.log(data);
     } catch (e) {
@@ -72,18 +76,16 @@ const fetchSecoundPart = async () => {
     fetchDrivers();
 }
 
-const fetchTravels = async () => {
+const fetchTravel = async (id: String) => {
     try {
-        const { data } = await services.viagens.getAll();
+        const { data } = await services.viagens.getById(id);
 
         console.log(data);
 
-        state.travels = data.data.routes;
-
-        state.travels.forEach(async travel => {
-            travel.automobile = await fetchAutomobileId(travel.automobile_id);
-            travel.driver = await fetchDriverId(travel.driver_id);
-        });
+        state.travel.passengersNumber = data.data.route.capacity;
+        state.travel.automobile_id = data.data.route.automobile_id;
+        state.travel.driver_id = data.data.route.driver_id;
+        state.travel.turn_id = data.data.route.turn_id;
 
     } catch (e) {
         console.error(e);
@@ -139,9 +141,10 @@ const fetchDriverId = async (id: String) => {
     }
 }
 
-onBeforeMount(() => {
-    fetchTurns();
-    fetchTravels();
+onBeforeMount(async () => {
+    const id = await router.currentRoute.value.params.id;
+    // fetchTurns();
+    fetchTravel(id);
 });
 </script>
 
@@ -154,7 +157,7 @@ onBeforeMount(() => {
         </div>
 
         <div class="grid grid-cols-1 gap-4 mt-8">
-            <ViagemTable :data="state.travels" @on-click:delete="handleDelete" />
+            <!-- <ViagemTable :data="state.travels" @on-click:delete="handleDelete" /> -->
         </div>
     </DefaultLayout>
 </template>
