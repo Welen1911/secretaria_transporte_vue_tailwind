@@ -55,7 +55,7 @@ onBeforeMount(fetchDriver);
         </div>
 
         <div class="grid grid-cols-1 gap-4 mt-8">
-            <!-- <AutomoveisTable :data="state.automobiles" @on-click:delete="handleDelete" /> -->
+            <ViagemTable :data="state.travels" @on-click:delete="handleDelete" />
         </div>
     </DefaultLayout>
 </template>

@@ -15,6 +15,20 @@ export default (httpClient: Axios) => ({
             data: response.data
         }
     },
+    getByAutomobileId: async (id: string| string[]) => {
+        const response = await httpClient.get(`/travel/automobile/${id}`);
+
+        return {
+            data: response.data
+        }
+    },
+    getByDriverId: async (id: string| string[]) => {
+        const response = await httpClient.get(`/travel/driver/${id}`);
+
+        return {
+            data: response.data
+        }
+    },
     create: async (data: Object) => {
         const response = await httpClient.post('/travel', data);
 
