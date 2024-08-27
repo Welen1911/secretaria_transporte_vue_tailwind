@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import TravelCard from '@/components/cards/TravelCard.vue';
-import ViagemTable from '@/components/Tables/ViagemTable.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import services from '@/services';
 import { onBeforeMount, reactive } from 'vue';
@@ -15,7 +14,8 @@ const state = reactive({
         turn_id: null,
         driver_id: null,
         automobile_id: null,
-        turn_id: null
+        turn_id: null,
+        id: null
     },
     automobiles: [],
     drivers: [],
@@ -24,7 +24,12 @@ const state = reactive({
 
 const handleSubmit = async () => {
     try {
-        const { data } = await services.viagens.create(state.travel);
+
+        const id = state.travel.id;
+
+        delete state.travel.id;
+
+        const { data } = await services.viagens.updateById(id, state.travel);
 
         clearInputs();
 
@@ -51,7 +56,7 @@ const handleDelete = async (id: String) => {
 
         console.log(data);
 
-        fetchTravels();
+        // fetchTravels();
 
     } catch (e) {
         console.error(e);
@@ -86,6 +91,7 @@ const fetchTravel = async (id: String) => {
         state.travel.automobile_id = data.data.route.automobile_id;
         state.travel.driver_id = data.data.route.driver_id;
         state.travel.turn_id = data.data.route.turn_id;
+        state.travel.id = data.data.route.id;
 
     } catch (e) {
         console.error(e);
@@ -143,7 +149,7 @@ const fetchDriverId = async (id: String) => {
 
 onBeforeMount(async () => {
     const id = await router.currentRoute.value.params.id;
-    // fetchTurns();
+    fetchTurns();
     fetchTravel(id);
 });
 </script>
@@ -152,12 +158,11 @@ onBeforeMount(async () => {
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4">
             <TravelCard :turns="state.turns" :travel="state.travel" :automobiles="state.automobiles"
-                :drivers="state.drivers" title="Cadastrar viagem" @on-click:submit="handleSubmit"
+                :drivers="state.drivers" title="Editar viagem" @on-click:submit="handleSubmit"
                 @on-click:continue="fetchSecoundPart" />
         </div>
 
         <div class="grid grid-cols-1 gap-4 mt-8">
-            <!-- <ViagemTable :data="state.travels" @on-click:delete="handleDelete" /> -->
         </div>
     </DefaultLayout>
 </template>
