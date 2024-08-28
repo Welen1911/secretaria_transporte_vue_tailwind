@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DriverCard from '@/components/cards/DriverCard.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import ViagemTable from '@/components/tables/ViagemTable.vue';
 import services from '@/services';
 import { onBeforeMount, reactive } from 'vue';
 import { useRouter } from 'vue-router';
@@ -8,7 +9,8 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const state = reactive({
-    driver: {}
+    driver: {},
+    travels: []
 });
 
 const handleSubmit = async () => {
@@ -44,7 +46,41 @@ const fetchDriver = async () => {
     }
 }
 
-onBeforeMount(fetchDriver);
+const fetchAutomobileId = async (id: String) => {
+    try {
+        let { data } = await services.automoveis.getById(id);
+
+        console.log('AutoMobile:', data);
+        return data.data.automobile;
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+const fetchTravels = async () => {
+    try {
+        const { data } = await services.viagens.getByDriverId(state.driver.id);
+
+        console.log('Rotas: ', data);
+
+        state.travels = data.data.routes;
+
+        console.log(state);
+
+        state.travels.forEach(async travel => {
+            travel.automobile = await fetchAutomobileId(travel.automobile_id);
+            travel.driver = state.driver;
+        });
+
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+onBeforeMount(async () => {
+    await fetchDriver();
+    await fetchTravels();
+});
 </script>
 
 <template>
