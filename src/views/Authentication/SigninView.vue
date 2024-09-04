@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import services from '@/services';
 import DefaultAuthCard from '@/components/Auths/DefaultAuthCard.vue'
 import { useRoute, useRouter } from 'vue-router';
 import { onMounted, reactive } from 'vue';
@@ -11,12 +12,28 @@ const state = reactive({
 });
 
 onMounted(async () => {
-  const token = await getUrlQueryParams();
+  const accessToken = await getUrlQueryParams();
 
-  if (!token) {
+  if (!accessToken) {
     state.hasError = true;
+    return;
   }
+
+  window.localStorage.setItem('AccessToken', accessToken);
+
+  login();
+
 });
+
+const login = async () => {
+  try {
+    const { data } = await services.auth.login();
+
+    console.log(data);
+  } catch (e) {
+    console.erro(e);
+  }
+}
 
 const getUrlQueryParams = async () => {
   await router.isReady()
