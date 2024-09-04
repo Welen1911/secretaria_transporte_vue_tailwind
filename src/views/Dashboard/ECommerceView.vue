@@ -18,6 +18,16 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue'
         Bem-vindo!
       </div>
     </div>
+    <div class="grid grid-cols-1 gap-4">
+      <!-- <DataStatsOne /> -->
+      <div
+        class="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <a href="https://web-gerenciador-publico.netlify.app/example" class="outline px-2 mx-2">Home</a>
+        <a href="" class="outline px-2 mx-2">Secretaria de cultura</a>
+        <a href="" class="outline px-2 mx-2">Secretaria de educação</a>
+        <a href="" class="outline px-2 mx-2">Secretaria de saúde</a>
+      </div>
+    </div>
 
     <div class="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
       <!-- ====== Chart One Start -->

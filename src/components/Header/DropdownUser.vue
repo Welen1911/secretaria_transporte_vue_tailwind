@@ -1,13 +1,22 @@
 <script setup lang="ts">
+import { userStore } from '@/stores/user';
 import { onClickOutside } from '@vueuse/core'
+import { userInfo } from 'os';
 import { ref } from 'vue'
 
 const target = ref(null)
 const dropdownOpen = ref(false)
 
+const store = userStore();
+
 onClickOutside(target, () => {
   dropdownOpen.value = false
 })
+
+const handleLogout = () => {
+  window.localStorage.clear();
+  window.location.href = 'https://web-gerenciador-publico.netlify.app/example';
+}
 </script>
 
 <template>
@@ -18,14 +27,9 @@ onClickOutside(target, () => {
       @click.prevent="dropdownOpen = !dropdownOpen"
     >
       <span class="hidden text-right lg:block">
-        <span class="block text-sm font-medium text-black dark:text-white">Thomas Anree</span>
-        <span class="block text-xs font-medium">UX Designer</span>
+        <span class="block text-sm font-medium text-black dark:text-white">{{ store.email ?? '...' }}</span>
+        <span class="block text-xs font-medium">{{  store.name ?? 'Carregando'  }}</span>
       </span>
-
-      <span class="h-12 w-12 rounded-full">
-        <img src="@/assets/images/user/user-01.png" alt="User" />
-      </span>
-
       <svg
         :class="dropdownOpen && 'rotate-180'"
         class="hidden fill-current sm:block"
@@ -49,7 +53,7 @@ onClickOutside(target, () => {
       v-show="dropdownOpen"
       class="absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
     >
-      <ul class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
+      <!-- <ul class="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
         <li>
           <router-link
             to="/profile"
@@ -121,8 +125,8 @@ onClickOutside(target, () => {
             Account Settings
           </router-link>
         </li>
-      </ul>
-      <button
+      </ul> -->
+      <button @click="handleLogout"
         class="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
         <svg

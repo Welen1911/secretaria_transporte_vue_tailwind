@@ -21,8 +21,8 @@ watch(
       console.log(store.email);
     } catch (e) {
       console.error(e);
-      window.localStorage.clear();
-      window.location.href = 'https://web-gerenciador-publico.netlify.app';
+      // window.localStorage.clear();
+      // window.location.href = 'https://web-gerenciador-publico.netlify.app';
     }
   }
 );
