@@ -7,5 +7,12 @@ export default (httpClient: Axios) => ({
     return {
       data: data
     }
+  },
+  getMe: async () => {
+    const { data } = await httpClient.get('/me');
+
+    return {
+      data: data
+    }
   }
 })

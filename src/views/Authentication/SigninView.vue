@@ -33,6 +33,9 @@ const login = async () => {
     console.log(data);
 
     window.localStorage.setItem('token', data.data); 
+
+    router.push('/');
+
   } catch (e) {
     console.error(e);
     state.hasError = true;
