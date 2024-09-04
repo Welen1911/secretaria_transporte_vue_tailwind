@@ -15,8 +15,9 @@ onMounted(async () => {
   const accessToken = await getUrlQueryParams();
 
   if (!accessToken) {
+    window.localStorage.clear();
     state.hasError = true;
-    return;
+    window.location.href = 'https://web-gerenciador-publico.netlify.app';
   }
 
   window.localStorage.setItem('AccessToken', accessToken);
@@ -30,8 +31,13 @@ const login = async () => {
     const { data } = await services.auth.login();
 
     console.log(data);
+
+    window.localStorage.setItem('token', data.data); 
   } catch (e) {
-    console.erro(e);
+    console.error(e);
+    state.hasError = true;
+    window.localStorage.clear();
+    window.location.href = 'https://web-gerenciador-publico.netlify.app';
   }
 }
 
