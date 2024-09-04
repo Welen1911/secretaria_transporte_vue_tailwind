@@ -19,9 +19,7 @@ const httpClient = axios.create({
 
 httpClient.interceptors.request.use((config) => {
   console.log('Entrou aqui!')
-
-  // setGlobalLoading(true);
-
+  
   const token = window.localStorage.getItem('token')
   if (token) {
     console.log(token)
@@ -31,7 +29,7 @@ httpClient.interceptors.request.use((config) => {
   const loginToken = window.localStorage.getItem('AccessToken')
   if (loginToken) {
     console.log('header', config.headers);
-    // config.headers = {...config.headers, 'Login-token' : loginToken};
+    config.headers = {...config.headers, 'Login-token' : loginToken};
   }
   return config
 })
