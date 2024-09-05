@@ -5,12 +5,14 @@ import ViagemTable from '@/components/tables/ViagemTable.vue';
 import services from '@/services';
 import { onBeforeMount, reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import ViagemTable_motorista from '@/components/Tables/ViagemTable_motorista.vue';
 
 const router = useRouter();
 
 const state = reactive({
     driver: {},
-    travels: []
+    travels: [],
+    users: []
 });
 
 const handleSubmit = async () => {
@@ -56,6 +58,20 @@ const fetchAutomobileId = async (id: String) => {
         console.error(e);
     }
 }
+const fetchUsers = async () => {
+    try {
+        const { data } = await services.auth.getAll();
+
+        state.users = data.data;
+
+        state.users.push(state.driver.user);
+
+        console.log(state.users);
+
+    } catch (e) {
+        console.error(e);
+    }
+}
 
 const fetchTravels = async () => {
     try {
@@ -80,18 +96,19 @@ const fetchTravels = async () => {
 onBeforeMount(async () => {
     await fetchDriver();
     await fetchTravels();
+    await fetchUsers();
 });
 </script>
 
 <template>
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4">
-            <DriverCard :driver="state.driver" title="Editar motorista" button="Editar"
+            <DriverCard :users="state.users" :driver="state.driver" title="Editar motorista" button="Editar"
                 @on-click:submit="handleSubmit" />
         </div>
 
         <div class="grid grid-cols-1 gap-4 mt-8">
-            <ViagemTable :data="state.travels" @on-click:delete="handleDelete" />
+            <ViagemTable_motorista :data="state.travels" @on-click:delete="handleDelete" />
         </div>
     </DefaultLayout>
 </template>

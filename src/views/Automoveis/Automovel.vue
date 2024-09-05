@@ -2,6 +2,7 @@
 import AutomobileCard from '@/components/cards/AutomobileCard.vue';
 import AutomoveisTable from '@/components/Tables/AutomoveisTable.vue';
 import ViagemTable from '@/components/Tables/ViagemTable.vue';
+import ViagemTable_motorista from '@/components/Tables/ViagemTable_motorista.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import services from '@/services';
 import { onBeforeMount, reactive } from 'vue';
@@ -86,7 +87,7 @@ onBeforeMount(async () => {
         </div>
 
         <div class="grid grid-cols-1 gap-4 mt-8">
-            <ViagemTable :data="state.travels" @on-click:delete="handleDelete" />
+            <ViagemTable_motorista :data="state.travels" @on-click:delete="handleDelete" />
         </div>
     </DefaultLayout>
 </template>

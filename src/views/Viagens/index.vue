@@ -22,6 +22,7 @@ const state = reactive({
 
 const handleSubmit = async () => {
     try {
+
         const { data } = await services.viagens.create(state.travel);
 
         clearInputs();

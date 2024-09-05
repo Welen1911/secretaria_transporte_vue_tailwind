@@ -38,19 +38,19 @@ const handleDelete = (id: String) => emits('onClick:delete', id);
                 <tbody>
                     <tr v-for="item in data" :key="item.id">
                         <td class="py-5 px-4 pl-9 xl:pl-11" @click="showViagem(item.id)">
-                            <h5 class="font-medium text-black dark:text-white"> {{ item.id }} </h5>
+                            <h5 class="font-medium text-black dark:text-white"> {{ item.r_start }} - {{ item.r_end }} </h5>
                         </td>
                         <td class="py-5 px-4">
                             <p class="text-black dark:text-white">{{ item.automobile.model }}</p>
                         </td>
                         <td class="py-5 px-4">
                             <p class="inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium">
-                                {{ item.driver.category ? item.driver.category : '-' }}
+                                {{ item.driver.user.name ? item.driver.user.name : '-' }}
                             </p>
                         </td>
                         <td class="py-5 px-4">
                             <div class="flex items-center space-x-3.5">
-                                <button class="hover:text-primary" @click="showViagem(item.id)">
+                                <button class="hover:text-primary" @click="showViagem(item.route_id)">
                                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
