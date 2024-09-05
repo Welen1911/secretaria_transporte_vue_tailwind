@@ -4,7 +4,7 @@ import auth from './auth'
 import automoveis from './automoveis'
 import motoristas from './motoristas'
 import turnos from './turnos'
-import viagens from './Viagens'
+import viagens from './viagens'
 
 const API_ENVS = {
   //   production: "https://feed-backer-backend.vercel.app/api/api",
