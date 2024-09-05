@@ -8,6 +8,8 @@ import { onBeforeMount, reactive } from 'vue';
 const state = reactive({
     turns: [],
     travel: {
+        start: null,
+        end: null,
         passengersNumber: null,
         turn_id: null,
         driver_id: null,

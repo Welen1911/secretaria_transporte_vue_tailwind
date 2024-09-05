@@ -11,8 +11,22 @@ const state = reactive({
         status: '',
     },
     automobiles: [],
-    drivers: []
+    drivers: [],
+    users: []
 });
+
+const fetchUsers = async () => {
+    try {
+        const { data } = await services.auth.getAll();
+
+        state.users = data.data;
+
+        console.log(state.users)
+
+    } catch (e) {
+        console.error(e);
+    }
+}
 
 const handleSubmit = async () => {
     try {
@@ -61,13 +75,16 @@ const fetchDrivers = async () => {
     }
 }
 
-onBeforeMount(fetchDrivers);
+onBeforeMount(async () => {
+    await fetchDrivers();
+    await fetchUsers();
+});
 </script>
 
 <template>
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4">
-            <DriverCard :driver="state.driver" title="Cadastrar motorista"
+            <DriverCard :users="state.users" :driver="state.driver" title="Cadastrar motorista"
                 @on-click:submit="handleSubmit" />
         </div>
 

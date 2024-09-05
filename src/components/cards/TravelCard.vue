@@ -52,6 +52,14 @@ const continued = () => {
     <DefaultCard :card-title="props.title">
         <form @submit.prevent="submit" action="#">
             <div class="p-6.5">
+                <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                    <InputGroup label="Inicia" type="text" placeholder="aqui" customClasses="w-full"
+                        v-model="travel.start" required  :isDisabled="!firstPart"/>
+                </div>
+                <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
+                    <InputGroup label="Finaliza" type="text" placeholder="ali" customClasses="w-full"
+                        v-model="travel.end" required  :isDisabled="!firstPart"/>
+                </div>
                 <div class="mb-4.5 flex">
                     <!-- <InputGroup label="Turno" type="text" placeholder="A" v-model="turn.period" customClasses="w-full"
                         required /> -->

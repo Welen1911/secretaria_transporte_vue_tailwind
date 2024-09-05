@@ -2,6 +2,7 @@
 import DefaultCard from '@/components/Forms/DefaultCard.vue';
 import InputGroup from '../Forms/InputGroup.vue';
 import SelectGroupTwo from '../Forms/SelectGroup/SelectGroupTwo.vue';
+import SelectUser from '../Forms/SelectGroup/SelectUser.vue';
 
 const props = defineProps({
     title: {
@@ -15,6 +16,10 @@ const props = defineProps({
     button: {
         type: String,
         default: 'Cadastrar'
+    },
+    users: {
+        type: Array,
+        required: true
     }
 });
 
@@ -29,7 +34,7 @@ const submit = () => emits('onClick:submit');
         <form @submit.prevent="submit" action="#">
             <div class="p-6.5">
                 <div class="mb-4.5 flex">
-                    <SelectGroupTwo label="Usuário" class="w-full" />
+                    <SelectUser :driver="driver" :users="users" />
                 </div>
                 <div class="mb-4.5 flex flex-col gap-6 xl:flex-row">
                     <InputGroup label="Categoria" type="text" placeholder="A" v-model="driver.category"

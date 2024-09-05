@@ -14,5 +14,12 @@ export default (httpClient: Axios) => ({
     return {
       data: data
     }
+  },
+  getAll: async () => {
+    const { data } = await httpClient.get('/users');
+
+    return {
+      data
+    }
   }
 })
