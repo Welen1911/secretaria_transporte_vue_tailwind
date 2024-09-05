@@ -50,7 +50,7 @@ onBeforeMount(fetchTurn);
 <template>
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4">
-            <TurnsCard :turn="state.turn" title="Editar motorista" button="Editar"
+            <TurnsCard :turn="state.turn" title="Editar turno" button="Editar"
                 @on-click:submit="handleSubmit" />
         </div>
 

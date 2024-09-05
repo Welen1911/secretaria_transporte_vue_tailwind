@@ -3,7 +3,10 @@ import TurnsCard from '@/components/cards/TurnsCard.vue';
 import TurnosTable from '@/components/Tables/TurnosTable.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import services from '@/services';
+import { userStore } from '@/stores/user';
 import { onBeforeMount, reactive } from 'vue';
+
+const store = userStore();
 
 const state = reactive({
     turn: {
@@ -68,7 +71,7 @@ onBeforeMount(fetchTurns);
 <template>
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4">
-            <TurnsCard :turn="state.turn" title="Criar turno"
+            <TurnsCard v-if="store.type === 'admin'" :turn="state.turn" title="Criar turno"
                 @on-click:submit="handleSubmit" />
         </div>
 

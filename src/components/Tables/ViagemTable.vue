@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { userStore } from '@/stores/user';
 import { useRouter } from 'vue-router';
+
+const store = userStore();
 
 const props = defineProps({
     data: {
@@ -37,7 +40,7 @@ const handleDelete = (id: String) => emits('onClick:delete', id);
                 </thead>
                 <tbody>
                     <tr v-for="item in data" :key="item.id">
-                        <td class="py-5 px-4 pl-9 xl:pl-11" @click="showViagem(item.id)">
+                        <td class="py-5 px-4 pl-9 xl:pl-11" @click="showViagem(item.route_id)">
                             <h5 class="font-medium text-black dark:text-white"> {{ item.r_start }} - {{ item.r_end }} </h5>
                         </td>
                         <td class="py-5 px-4">
@@ -62,7 +65,7 @@ const handleDelete = (id: String) => emits('onClick:delete', id);
                                     </svg>
                                 </button>
 
-                                <button class="hover:text-primary" @click="handleDelete(item.id)">
+                                <button class="hover:text-primary" v-if="store.type === 'admin'" @click="handleDelete(item.id)">
                                     <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path

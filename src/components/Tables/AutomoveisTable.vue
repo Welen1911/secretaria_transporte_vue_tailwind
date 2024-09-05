@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { userStore } from '@/stores/user';
 import { ref } from 'vue';
 import {useRouter} from 'vue-router';
+
+const store = userStore();
 
 const props = defineProps({
   data: {
@@ -69,7 +72,7 @@ const handleDelete = (id: String) => emits('onClick:delete', id);
                   </svg>
                 </button>
 
-                <button class="hover:text-primary" @click="handleDelete(item.id)">
+                <button class="hover:text-primary" v-if="store.type === 'admin'" @click="handleDelete(item.id)">
                   <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path

@@ -3,7 +3,10 @@ import AutomobileCard from '@/components/cards/AutomobileCard.vue';
 import AutomoveisTable from '@/components/Tables/AutomoveisTable.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import services from '@/services';
+import { userStore } from '@/stores/user';
 import { onBeforeMount, reactive } from 'vue';
+
+const store = userStore();
 
 const state = reactive({
     automobile: {
@@ -71,7 +74,7 @@ onBeforeMount(fetchAutomobiles);
 <template>
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4">
-            <AutomobileCard :automobile="state.automobile" title="Cadastrar automovel"
+            <AutomobileCard v-if="store.type === 'admin'"  :automobile="state.automobile" title="Cadastrar automovel"
                 @on-click:submit="handleSubmit" />
         </div>
 

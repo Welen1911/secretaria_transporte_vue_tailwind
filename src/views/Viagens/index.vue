@@ -3,7 +3,10 @@ import TravelCard from '@/components/cards/TravelCard.vue';
 import ViagemTable from '@/components/Tables/ViagemTable.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import services from '@/services';
+import { userStore } from '@/stores/user';
 import { onBeforeMount, reactive } from 'vue';
+
+const store = userStore();
 
 const state = reactive({
     turns: [],
@@ -151,7 +154,7 @@ onBeforeMount(() => {
 <template>
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4">
-            <TravelCard :turns="state.turns" :travel="state.travel" :automobiles="state.automobiles"
+            <TravelCard v-if="store.type === 'admin'"  :turns="state.turns" :travel="state.travel" :automobiles="state.automobiles"
                 :drivers="state.drivers" title="Cadastrar viagem" @on-click:submit="handleSubmit"
                 @on-click:continue="fetchSecoundPart" />
         </div>

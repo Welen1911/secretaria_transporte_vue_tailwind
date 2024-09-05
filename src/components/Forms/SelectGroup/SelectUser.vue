@@ -16,6 +16,10 @@ const props = defineProps({
     driver: {
         type: Object,
         required: true
+    },
+    isDisabled : {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -29,7 +33,8 @@ const props = defineProps({
         <div class="relative z-20 bg-white dark:bg-form-input">
             <select v-model="driver.user_id" :class="{ 'text-black dark:text-white': isOptionSelected }"
                 @change="changeTextColor"
-                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
+                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                :disabled="isDisabled">
                 <option :value="null" disabled :selected="driver.driver_id == null">Selecione o motorista</option>
                 <option v-for="user in users" :key="user.id" :value="user.id">{{
                     user.name }}</option>

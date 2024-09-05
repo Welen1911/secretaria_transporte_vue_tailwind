@@ -3,7 +3,10 @@ import DriverCard from '@/components/cards/DriverCard.vue';
 import MotoristasTable from '@/components/Tables/MotoristasTable.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import services from '@/services';
+import { userStore } from '@/stores/user';
 import { onBeforeMount, reactive } from 'vue';
+
+const store = userStore();
 
 const state = reactive({
     driver: {
@@ -84,7 +87,7 @@ onBeforeMount(async () => {
 <template>
     <DefaultLayout>
         <div class="grid grid-cols-1 gap-4">
-            <DriverCard :users="state.users" :driver="state.driver" title="Cadastrar motorista"
+            <DriverCard v-if="store.type === 'admin'"  :users="state.users" :driver="state.driver" title="Cadastrar motorista"
                 @on-click:submit="handleSubmit" />
         </div>
 
