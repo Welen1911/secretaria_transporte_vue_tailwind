@@ -31,8 +31,8 @@ const props = defineProps({
                 @change="changeTextColor"
                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                 <option :value="null" disabled :selected="travel.driver_id == null">Selecione o motorista</option>
-                <option v-for="driver in drivers" :key="driver.id" :value="driver.id">{{
-                    driver.category }}</option>
+                <option v-for="driver in drivers" :key="driver.id" :value="driver.id">
+                    {{ driver.user.name }}- {{ driver.category }}</option>
             </select>
             <span class="absolute top-1/2 right-4 z-10 -translate-y-1/2">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

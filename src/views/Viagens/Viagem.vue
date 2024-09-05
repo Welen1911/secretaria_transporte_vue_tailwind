@@ -14,6 +14,8 @@ const state = reactive({
         turn_id: null,
         driver_id: null,
         automobile_id: null,
+        start: null,
+        end: null,
         turn_id: null,
         id: null
     },
@@ -91,6 +93,8 @@ const fetchTravel = async (id: String) => {
         state.travel.automobile_id = data.data.route.automobile_id;
         state.travel.driver_id = data.data.route.driver_id;
         state.travel.turn_id = data.data.route.turn_id;
+        state.travel.start = data.data.route.start;
+        state.travel.end = data.data.route.end;
         state.travel.id = data.data.route.id;
 
     } catch (e) {
