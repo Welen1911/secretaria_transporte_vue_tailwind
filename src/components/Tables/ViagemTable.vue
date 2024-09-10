@@ -44,7 +44,7 @@ const handleDelete = (id: String) => emits('onClick:delete', id);
                             <h5 class="font-medium text-black dark:text-white"> {{ item.r_start }} - {{ item.r_end }} </h5>
                         </td>
                         <td class="py-5 px-4">
-                            <p class="text-black dark:text-white">{{ item.automobile.model }}</p>
+                            <p class="text-black dark:text-white">{{ item.car_model }}</p>
                         </td>
                         <td class="py-5 px-4">
                             <p class="inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium">
