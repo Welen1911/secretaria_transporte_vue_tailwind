@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const props = defineProps({
+  label: String,
+});
+
 const selectedOption = ref<string>('')
 const isOptionSelected = ref<boolean>(false)
 
@@ -11,7 +15,7 @@ const changeTextColor = () => {
 
 <template>
   <div class="mb-4.5">
-    <label class="mb-2.5 block text-black dark:text-white"> Subject </label>
+    <label class="mb-2.5 block text-black dark:text-white"> {{  label  }} </label>
 
     <div class="relative z-20 bg-transparent dark:bg-form-input">
       <select

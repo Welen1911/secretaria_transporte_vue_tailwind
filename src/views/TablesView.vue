@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'
 import TableOne from '@/components/Tables/TableOne.vue'
 import TableTwo from '@/components/Tables/TableTwo.vue'
-import TableThree from '@/components/Tables/TableThree.vue'
+import TableThree from '@/components/Tables/AutomoveisTable.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
 const pageTitle = ref('Tables')

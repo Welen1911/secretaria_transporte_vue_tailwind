@@ -1,18 +1,28 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { defineComponent, defineEmits } from 'vue'
 
-export default defineComponent({
-  props: {
-    label: String,
-    type: String,
-    placeholder: String,
-    customClasses: String,
-    required: {
-      type: Boolean,
-      default: false
-    }
-  }
-})
+const props = defineProps({
+  label: String,
+  type: String,
+  placeholder: String,
+  customClasses: String,
+  required: {
+    type: Boolean,
+    default: false
+  },
+  isDisabled: {
+    type: Boolean,
+    default: false
+  },
+  modelValue: String||Number||Boolean
+});
+
+const emits = defineEmits(['update:modelValue']);
+
+const updateValue = (value: String) => {
+  emits('update:modelValue', value);
+}
+
 </script>
 
 <template>
@@ -21,10 +31,8 @@ export default defineComponent({
       {{ label }}
       <span v-if="required" class="text-meta-1">*</span>
     </label>
-    <input
-      :type="type"
-      :placeholder="placeholder"
+    <input :type="type" :placeholder="placeholder"
       class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-3 px-5 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-    />
+      :value="modelValue" @input="updateValue($event.target.value)" :disabled="isDisabled" />
   </div>
 </template>

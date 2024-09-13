@@ -12,6 +12,16 @@ import ProfileView from '@/views/ProfileView.vue'
 import TablesView from '@/views/TablesView.vue'
 import AlertsView from '@/views/UiElements/AlertsView.vue'
 import ButtonsView from '@/views/UiElements/ButtonsView.vue'
+import Empresas from '@/views/Empresas/index.vue'
+import Empresa from '@/views/Empresas/Empresa.vue'
+import Automoveis from '@/views/Automoveis/index.vue'
+import Automovel from '@/views/Automoveis/Automovel.vue'
+import Motoristas from '@/views/Motoristas/index.vue'
+import Motorista from '@/views/Motoristas/Motorista.vue'
+import Turnos from '@/views/Turnos/index.vue'
+import Turno from '@/views/Turnos/Turno.vue'
+import Viagens from '@/views/Viagens/index.vue'
+import Viagem from '@/views/Viagens/Viagem.vue'
 
 const routes = [
   {
@@ -23,11 +33,19 @@ const routes = [
     }
   },
   {
-    path: '/calendar',
-    name: 'calendar',
-    component: CalendarView,
+    path: '/turnos',
+    name: 'turnos',
+    component: Turnos,
     meta: {
-      title: 'Calendar'
+      title: 'Turnos'
+    }
+  },
+  {
+    path: '/turnos/:id',
+    name: 'turno',
+    component: Turno,
+    meta: {
+      title: 'Turnos'
     }
   },
   {
@@ -95,7 +113,7 @@ const routes = [
     }
   },
   {
-    path: '/auth/signin',
+    path: '/sign-in',
     name: 'signin',
     component: SigninView,
     meta: {
@@ -108,6 +126,70 @@ const routes = [
     component: SignupView,
     meta: {
       title: 'Signup'
+    }
+  },
+  {
+    path: '/empresas',
+    name: 'empresas',
+    component: Empresas,
+    meta: {
+      title: 'Empresas'
+    }
+  },
+  {
+    path: '/empresas/:id',
+    name: 'empresaById',
+    component: Empresa,
+    meta: {
+      title: 'Empresa X'
+    }
+  },
+  {
+    path: '/automoveis',
+    name: 'automoveis',
+    component: Automoveis,
+    meta: {
+      title: 'Automoveis'
+    }
+  },
+  {
+    path: '/automoveis/:id',
+    name: 'automoveiById',
+    component: Automovel,
+    meta: {
+      title: 'Automoveis'
+    }
+  },
+  {
+    path: '/motoristas',
+    name: 'motoristas',
+    component: Motoristas,
+    meta: {
+      title: 'Motoristas'
+    }
+  },
+  {
+    path: '/motoristas/:id',
+    name: 'motoristaById',
+    component: Motorista,
+    meta: {
+      title: 'Motoristas'
+    }
+  },
+  {
+    path: '/viagens',
+    name: 'Viagens',
+    component: Viagens,
+    meta: {
+      title: 'Viagens'
+    }
+  },
+  {
+    path: '/viagens/:id',
+    name: 'Viagen',
+    component: Viagem,
+    meta: {
+      title: 'Viagem'
     }
   }
 ]
